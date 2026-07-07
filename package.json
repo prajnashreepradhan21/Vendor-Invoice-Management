@@ -26,7 +26,8 @@
     "watch-invoice-approval": "cds watch --open com.vendor.invoice.invoiceapproval/index.html?sap-ui-xx-viewCache=false --livereload false",
     "watch-analytics": "cds watch --open com.vendor.invoice.analytics/index.html?sap-ui-xx-viewCache=false --livereload false",
     "watch-vendor-manager-ui": "cds watch --open com.vendor.invoice.vendormanagerui/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "watch-viewer": "cds watch --open com.vendor.invoice.viewer/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-viewer": "cds watch --open com.vendor.invoice.viewer/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-vendor-approval": "cds watch --open vendorapproval/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "private": true,
   "cds": {
@@ -88,6 +89,7 @@
     "app/invoice-approval",
     "app/analytics",
     "app/vendor-manager-ui",
-    "app/viewer"
+    "app/viewer",
+    "app/vendor-approval"
   ]
 }

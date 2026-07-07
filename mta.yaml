@@ -84,6 +84,10 @@ modules:
       - comvendorinvoicemanagement.zip
       name: comvendorinvoicemanagement
       target-path: app/
+    - artifacts:
+      - vendorapproval.zip
+      name: vendorapproval
+      target-path: app/
 - name: VendorInvoiceManagementinvoicemanagement
   type: html5
   path: app/invoice-management
@@ -168,6 +172,16 @@ modules:
 - name: comvendorinvoicemanagement
   type: html5
   path: app/invoice-management
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: vendorapproval
+  type: html5
+  path: app/vendor-approval
   build-parameters:
     build-result: dist
     builder: custom

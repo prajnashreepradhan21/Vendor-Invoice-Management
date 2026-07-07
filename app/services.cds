@@ -8,3 +8,5 @@ using from './analytics/annotations';
 using from './vendor-manager-ui/annotations';
 
 using from './viewer/annotations';
+
+using from './vendor-approval/annotations';

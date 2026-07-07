@@ -1,0 +1,2 @@
+sap.ui.define(["sap/fe/core/AppComponent"],function(e){"use strict";return e.extend("vendorapproval.Component",{metadata:{manifest:"json"},getStartupParameters:function(){return Promise.resolve({preferredMode:["create"]})}})});
+//# sourceMappingURL=Component.js.map
