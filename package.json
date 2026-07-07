@@ -1,0 +1,93 @@
+{
+  "name": "Vendor-Invoice-Management",
+  "version": "1.0.0",
+  "dependencies": {
+    "@cap-js/hana": "^2",
+    "@sap-cloud-sdk/connectivity": "^4.7.0",
+    "@sap-cloud-sdk/http-client": "^4.7.0",
+    "@sap-cloud-sdk/resilience": "^4.7.0",
+    "@sap/cds": "^9",
+    "@sap/xsenv": "^6.2.1",
+    "@sap/xssec": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2.4",
+    "@sap/cds-dk": "^9",
+    "cds-plugin-ui5": "^0.17.0",
+    "rimraf": "^5.0.5",
+    "mbt": "^1.2.49"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-invoice-management": "cds watch --open com.vendor.invoice.invoicemanagement/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "undeploy": "cf undeploy Vendor-Invoice-Management --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+    "watch-invoice-approval": "cds watch --open com.vendor.invoice.invoiceapproval/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-analytics": "cds watch --open com.vendor.invoice.analytics/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-vendor-manager-ui": "cds watch --open com.vendor.invoice.vendormanagerui/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-viewer": "cds watch --open com.vendor.invoice.viewer/index.html?sap-ui-xx-viewCache=false --livereload false"
+  },
+  "private": true,
+  "cds": {
+    "requires": {
+      "auth": {
+        "kind": "mocked",
+        "users": {
+          "alice": {
+            "password": "alice",
+            "roles": [
+              "Admin"
+            ]
+          },
+          "manager1": {
+            "password": "manager1",
+            "roles": [
+              "Admin",
+              "VendorManager"
+            ]
+          },
+          "approver1": {
+            "password": "approver1",
+            "roles": [
+              "Admin",
+              "Approver"
+            ]
+          },
+          "viewer1": {
+            "password": "viewer1",
+            "roles": [
+              "Viewer"
+            ]
+          }
+        }
+      },
+      "API_BUSINESS_PARTNER": {
+        "kind": "odata-v2",
+        "model": "srv/external/API_BUSINESS_PARTNER",
+        "credentials": {
+          "destination": "S4HANA"
+        }
+      },
+      "[production]": {
+        "auth": {
+          "kind": "xsuaa"
+        },
+        "db": "hana"
+      },
+      "destinations": true,
+      "html5-repo": true,
+      "workzone": true
+    }
+  },
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/invoice-management",
+    "app/invoice-approval",
+    "app/analytics",
+    "app/vendor-manager-ui",
+    "app/viewer"
+  ]
+}

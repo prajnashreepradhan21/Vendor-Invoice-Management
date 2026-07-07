@@ -1,0 +1,88 @@
+{
+  "xsappname": "vendor-invoice-management",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Admin",
+      "description": "Admin"
+    },
+    {
+      "name": "$XSAPPNAME.VendorManager",
+      "description": "Vendor Manager"
+    },
+    {
+      "name": "$XSAPPNAME.Approver",
+      "description": "Approver"
+    },
+    {
+      "name": "$XSAPPNAME.Viewer",
+      "description": "Viewer"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "Admin",
+      "description": "Administrator",
+      "scope-references": [
+        "$XSAPPNAME.Admin"
+      ]
+    },
+    {
+      "name": "VendorManager",
+      "description": "Vendor Manager",
+      "scope-references": [
+        "$XSAPPNAME.VendorManager"
+      ]
+    },
+    {
+      "name": "Approver",
+      "description": "Approver",
+      "scope-references": [
+        "$XSAPPNAME.Approver"
+      ]
+    },
+    {
+      "name": "Viewer",
+      "description": "Viewer",
+      "scope-references": [
+        "$XSAPPNAME.Viewer"
+      ]
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "VendorInvoice_Admin",
+      "description": "Full access - Admin",
+      "role-template-references": [
+        "$XSAPPNAME.Admin"
+      ]
+    },
+    {
+      "name": "VendorInvoice_VendorManager",
+      "description": "Own vendors access - Vendor Manager",
+      "role-template-references": [
+        "$XSAPPNAME.VendorManager"
+      ]
+    },
+    {
+      "name": "VendorInvoice_Approver",
+      "description": "Approve only - Approver",
+      "role-template-references": [
+        "$XSAPPNAME.Approver"
+      ]
+    },
+    {
+      "name": "VendorInvoice_Viewer",
+      "description": "Read-only access - Viewer",
+      "role-template-references": [
+        "$XSAPPNAME.Viewer"
+      ]
+    }
+  ],
+  "oauth2-configuration": {
+    "redirect-uris": [
+      "https://*.hana.ondemand.com/**"
+    ]
+  }
+}

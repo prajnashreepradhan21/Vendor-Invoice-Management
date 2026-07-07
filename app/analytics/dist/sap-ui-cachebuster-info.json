@@ -1,0 +1,22 @@
+{
+  "controller/App.controller.js": 1783355190244,
+  "manifest.json": 1783356696286,
+  "i18n/i18n.properties": 1783355190236,
+  "controller/AnalyticsDashboard.controller.js": 1783359338901,
+  "model/models.js": 1783355190244,
+  "Component.js": 1783355190236,
+  "model/models-dbg.js": 1783355190244,
+  "model/models.js.map": 1783364904448,
+  "controller/AnalyticsDashboard-dbg.controller.js": 1783359338901,
+  "controller/AnalyticsDashboard.controller.js.map": 1783364904448,
+  "controller/App-dbg.controller.js": 1783355190244,
+  "controller/App.controller.js.map": 1783364904448,
+  "Component-dbg.js": 1783355190236,
+  "Component.js.map": 1783364904459,
+  "Component-preload.js": 1783364904548,
+  "Component-preload.js.map": 1783364904549,
+  "view/analytics-dashboard.view.xml": 1783355647312,
+  "view/App.view.xml": 1783355190244,
+  "css/style.css": 1783355190244,
+  "index.html": 1783355190236
+}

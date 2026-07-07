@@ -1,0 +1,371 @@
+@host = http://localhost:4004
+
+###############################################################
+### USERS
+###############################################################
+
+### Admin
+# Username : alice
+# Password : alice
+@adminAuth = Basic YWxpY2U6YWxpY2U=
+
+### Vendor Manager
+# Username : manager1
+# Password : manager1
+@managerAuth = Basic bWFuYWdlcjE6bWFuYWdlcjE=
+
+### Approver
+# Username : approver1
+# Password : approver1
+@approverAuth = Basic YXBwcm92ZXIxOmFwcHJvdmVyMQ==
+
+### Viewer
+# Username : viewer1
+# Password : viewer1
+@viewerAuth = Basic dmlld2VyMTp2aWV3ZXIx
+
+###############################################################
+### ADMIN SERVICE
+###############################################################
+
+### Get Vendors
+GET {{host}}/odata/v4/admin/Vendors
+Authorization: {{adminAuth}}
+
+###
+
+### Get Invoices
+GET {{host}}/odata/v4/admin/Invoices
+Authorization: {{adminAuth}}
+
+###
+
+### Get Invoice Items
+GET {{host}}/odata/v4/admin/InvoiceItems
+Authorization: {{adminAuth}}
+
+###
+
+### Get Attachments
+GET {{host}}/odata/v4/admin/Attachments
+Authorization: {{adminAuth}}
+
+###
+
+### Get Approval History
+GET {{host}}/odata/v4/admin/ApprovalHistory
+Authorization: {{adminAuth}}
+
+###
+
+### Create Vendor
+POST {{host}}/odata/v4/admin/Vendors
+Authorization: {{adminAuth}}
+Content-Type: application/json
+
+{
+  "vendorName":"Demo Vendor",
+  "email":"demo@test.com",
+  "phone":"9999999999",
+  "address":"Bhubaneswar",
+  "country":"India",
+  "currency_code":"INR",
+  "taxId":"GST999",
+  "externalSystemId":"SUP999",
+  "assignedManager":"manager1",
+  "status":"APPROVED"
+}
+
+###
+
+### Create Invoice
+POST {{host}}/odata/v4/admin/Invoices
+Authorization: {{adminAuth}}
+Content-Type: application/json
+
+{
+    "invoiceNumber":"INV100",
+    "vendor_ID":"11111111-1111-1111-1111-111111111111",
+    "invoiceDate":"2026-07-04",
+    "dueDate":"2026-07-15",
+    "amount":15000,
+    "currency_code":"INR"
+}
+
+###
+
+### Submit Invoice
+POST {{host}}/odata/v4/admin/Invoices(ID=aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,IsActiveEntity=true)/AdminService.submitForApproval
+Authorization: {{adminAuth}}
+Content-Type: application/json
+
+{}
+
+###
+
+### Approve Invoice
+POST {{host}}/odata/v4/admin/Invoices(ID=bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb,IsActiveEntity=true)/AdminService.approveInvoice
+Authorization: {{adminAuth}}
+Content-Type: application/json
+
+{
+   "comments":"Approved"
+}
+
+###
+
+### Reject Invoice
+POST {{host}}/odata/v4/admin/Invoices(ID=bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb,IsActiveEntity=true)/AdminService.rejectInvoice
+Authorization: {{adminAuth}}
+Content-Type: application/json
+
+{
+   "reason":"Incorrect Amount"
+}
+
+###
+
+### Sync Vendors
+POST {{host}}/odata/v4/admin/syncVendors
+Authorization: {{adminAuth}}
+Content-Type: application/json
+Accept: application/json
+
+{}
+
+###############################################################
+### VENDOR MANAGER SERVICE
+###############################################################
+
+###
+
+### Get Vendors
+GET {{host}}/odata/v4/vendor-manager/Vendors
+Authorization: {{managerAuth}}
+
+###
+
+### Get Invoices
+GET {{host}}/odata/v4/vendor-manager/Invoices
+Authorization: {{managerAuth}}
+
+###
+
+### Get Invoice Items
+GET {{host}}/odata/v4/vendor-manager/InvoiceItems
+Authorization: {{managerAuth}}
+
+###
+
+### Get Attachments
+GET {{host}}/odata/v4/vendor-manager/Attachments
+Authorization: {{managerAuth}}
+
+###
+
+### Get Approval History
+GET {{host}}/odata/v4/vendor-manager/ApprovalHistory
+Authorization: {{managerAuth}}
+
+###
+
+### Submit Invoice
+POST http://localhost:4004/odata/v4/vendor-manager/Invoices(ID=aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,IsActiveEntity=true)/VendorManagerService.submitForApproval
+Authorization: Basic bWFuYWdlcjE6bWFuYWdlcjE=
+Content-Type: application/json
+
+{}
+
+###############################################################
+### APPROVER SERVICE
+###############################################################
+
+###
+
+### Get Submitted Invoices
+GET {{host}}/odata/v4/approver/Invoices
+Authorization: {{approverAuth}}
+
+###
+
+### Approve Invoice
+POST {{host}}/odata/v4/approver/Invoices(ID=aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,IsActiveEntity=true)/ApproverService.approveInvoice
+Authorization: {{approverAuth}}
+Content-Type: application/json
+
+{
+   "comments":"Approved Successfully"
+}
+
+###
+
+### Reject Invoice
+POST {{host}}/odata/v4/approver/Invoices(ID=bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb,IsActiveEntity=true)/ApproverService.rejectInvoice
+Authorization: {{approverAuth}}
+Content-Type: application/json
+
+{
+   "reason":"Amount mismatch"
+}
+
+###############################################################
+### VIEWER SERVICE
+###############################################################
+
+###
+
+### Get Vendors
+GET {{host}}/odata/v4/viewer/Vendors
+Authorization: {{viewerAuth}}
+
+###
+
+### Get Approved Invoices
+GET {{host}}/odata/v4/viewer/Invoices
+Authorization: {{viewerAuth}}
+
+###
+
+### Get Invoice Items
+GET {{host}}/odata/v4/viewer/InvoiceItems
+Authorization: {{viewerAuth}}
+
+###
+
+### Get Attachments
+GET {{host}}/odata/v4/viewer/Attachments
+Authorization: {{viewerAuth}}
+
+###
+
+### Get Approval History
+GET {{host}}/odata/v4/viewer/ApprovalHistory
+Authorization: {{viewerAuth}}
+
+###############################################################
+### ANALYTICS SERVICE
+###############################################################
+
+###
+
+### Analytics Entity
+GET {{host}}/odata/v4/analytics/Analytics
+Authorization: {{adminAuth}}
+
+###
+
+### KPI Cards
+GET {{host}}/odata/v4/analytics/getKPIs()
+Authorization: {{adminAuth}}
+
+###
+
+### Status Breakdown
+GET {{host}}/odata/v4/analytics/getStatusBreakdown()
+Authorization: {{adminAuth}}
+
+###
+
+### Invoice Trend
+GET {{host}}/odata/v4/analytics/getInvoiceTrend()
+Authorization: {{adminAuth}}
+
+###
+
+### Top Vendors
+GET {{host}}/odata/v4/analytics/getTopVendors()
+Authorization: {{adminAuth}}
+
+###############################################################
+### VALIDATION TESTS
+###############################################################
+
+###
+
+### Invalid Amount
+POST {{host}}/odata/v4/admin/Invoices
+Authorization: {{adminAuth}}
+Content-Type: application/json
+
+{
+    "invoiceNumber":"INV101",
+    "vendor_ID":"11111111-1111-1111-1111-111111111111",
+    "invoiceDate":"2026-07-01",
+    "dueDate":"2026-07-10",
+    "amount":-100,
+    "currency_code":"INR"
+}
+
+###
+
+### Future Invoice Date
+POST {{host}}/odata/v4/admin/Invoices
+Authorization: {{adminAuth}}
+Content-Type: application/json
+
+{
+    "invoiceNumber":"INV102",
+    "vendor_ID":"11111111-1111-1111-1111-111111111111",
+    "invoiceDate":"2035-01-01",
+    "dueDate":"2035-01-10",
+    "amount":10000,
+    "currency_code":"INR"
+}
+
+###
+
+### Due Date Before Invoice Date
+POST {{host}}/odata/v4/admin/Invoices
+Authorization: {{adminAuth}}
+Content-Type: application/json
+
+{
+    "invoiceNumber":"INV103",
+    "vendor_ID":"11111111-1111-1111-1111-111111111111",
+    "invoiceDate":"2026-07-20",
+    "dueDate":"2026-07-10",
+    "amount":5000,
+    "currency_code":"INR"
+}
+
+###
+
+### Duplicate Invoice Number
+POST {{host}}/odata/v4/admin/Invoices
+Authorization: {{adminAuth}}
+Content-Type: application/json
+
+{
+    "invoiceNumber":"INV001",
+    "vendor_ID":"11111111-1111-1111-1111-111111111111",
+    "invoiceDate":"2026-07-04",
+    "dueDate":"2026-07-15",
+    "amount":15000,
+    "currency_code":"INR"
+}
+
+### Sync Vendors
+POST http://localhost:4004/odata/v4/admin/syncVendors
+Authorization: Basic YWxpY2U6YWxpY2U=
+Content-Type: application/json
+
+{}
+
+###
+GET http://localhost:4004/odata/v4/admin/Vendors?$top=5
+Authorization: Basic YWxpY2U6YWxpY2U=
+
+###
+GET https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartner?$top=5
+apikey: 3MauOFtqzqKgvzYxNIddEVV1FoAxfwWZ
+Accept: application/json
+
+###
+
+GET http://localhost:4004/odata/v4/admin/Vendors?$filter=vendorName eq 'Barbara Elliston'
+Authorization: Basic YWxpY2U6YWxpY2U=
+
+###
+
+GET http://localhost:4004/odata/v4/admin/InvoiceItems?$orderby=createdAt desc&$top=1
+Authorization: Basic YWxpY2U6YWxpY2U=

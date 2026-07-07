@@ -1,0 +1,11 @@
+ID,vendorName,email,phone,address,country,currency_code,taxId,externalSystemId,assignedManager,status
+11111111-1111-1111-1111-111111111111,Acme Corp,contact@acme.com,9876543210,New York,USA,USD,TAX001,SUP001,prajnashreepradhan21@gmail.com,APPROVED
+22222222-2222-2222-2222-222222222222,Tech Solutions Ltd,info@techsolutions.com,9876543211,London,UK,EUR,TAX002,SUP002,manager1,APPROVED
+33333333-3333-3333-3333-333333333333,Global Supplies,sales@globalsupplies.com,9876543212,Bangalore,India,INR,TAX003,SUP003,manager2,APPROVED
+44444444-4444-4444-4444-444444444444,New Vendor Inc,admin@newvendor.com,9876543213,Chicago,USA,USD,TAX004,SUP004,manager1,PENDING
+55555555-5555-5555-5555-555555555555,Quality Parts,support@qualityparts.com,9876543214,Berlin,Germany,EUR,TAX005,SUP005,manager2,APPROVED
+66666666-6666-6666-6666-666666666666,Supply Chain Co,contact@supplychain.com,9876543215,Manchester,UK,GBP,TAX006,SUP006,prajnashreepradhan21@gmail.com,SUBMITTED
+77777777-7777-7777-7777-777777777777,Materials Plus,info@materialsplus.com,9876543216,Toronto,Canada,USD,TAX007,SUP007,manager2,REJECTED
+88888888-8888-8888-8888-888888888888,Service Provider,hello@serviceprovider.com,9876543217,Sydney,Australia,AUD,TAX008,SUP008,manager1,APPROVED
+99999999-9999-9999-9999-999999999999,Industrial Goods,sales@industrialgoods.com,9876543218,Paris,France,EUR,TAX009,SUP009,manager2,PENDING
+aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee,Equipment Rental,rental@equipment.com,9876543219,Los Angeles,USA,USD,TAX010,SUP010,manager1,APPROVED

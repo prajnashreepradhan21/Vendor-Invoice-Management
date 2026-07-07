@@ -1,0 +1,92 @@
+<mvc:View
+    controllerName="com.vendor.invoice.analytics.controller.AnalyticsDashboard"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:l="sap.ui.layout"
+    xmlns:viz="sap.viz.ui5.controls">
+
+    <Page title="Analytics Dashboard">
+
+        <content>
+
+            <!-- KPI Cards -->
+            <HBox justifyContent="SpaceAround" class="sapUiMediumMargin">
+
+                <GenericTile header="Total Invoices">
+                    <TileContent>
+                        <NumericContent value="{view>/totalInvoices}" />
+                    </TileContent>
+                </GenericTile>
+
+                <GenericTile header="Pending">
+                    <TileContent>
+                        <NumericContent value="{view>/pendingApprovals}" />
+                    </TileContent>
+                </GenericTile>
+
+                <GenericTile header="Rejected">
+                    <TileContent>
+                        <NumericContent value="{view>/rejectedInvoices}" />
+                    </TileContent>
+                </GenericTile>
+
+                <GenericTile header="Total Amount">
+                    <TileContent>
+                        <NumericContent value="{view>/totalAmount}" />
+                    </TileContent>
+                </GenericTile>
+
+            </HBox>
+
+            <!-- Status Chart -->
+            <Panel headerText="Status Breakdown">
+                <viz:VizFrame
+                    id="statusChart"
+                    vizType="pie"
+                    width="100%"
+                    height="350px"/>
+            </Panel>
+
+            <!-- Trend Chart -->
+            <Panel headerText="Invoice Trend">
+                <viz:VizFrame
+                    id="trendChart"
+                    vizType="line"
+                    width="100%"
+                    height="350px"/>
+            </Panel>
+
+            <!-- Top Vendors -->
+            <Panel headerText="Top Vendors">
+
+                <Table items="{vendors>/results}">
+
+                    <columns>
+                        <Column>
+                            <Text text="Vendor"/>
+                        </Column>
+
+                        <Column>
+                            <Text text="Total Amount"/>
+                        </Column>
+                    </columns>
+
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{vendors>vendorName}"/>
+                                <Text text="{vendors>totalAmount}"/>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+
+                </Table>
+
+            </Panel>
+
+        </content>
+
+    </Page>
+
+</mvc:View>
